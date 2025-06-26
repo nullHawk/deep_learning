@@ -5,18 +5,14 @@ import torch.optim as optim
 
 # 3 Layer --> 2 Layer --> 3 Layer
 class Autoencoder(nn.Module):
-    def __init__(self):
+    def __init__(self, input_size=3, bottleneck_size=2, output_size=3):
         super(Autoencoder, self).__init__()
-        self.input_size = 3
-        self.bottleneck_size = 2
-        self.output_size = 3
-
         self.encoder = nn.Sequential(
-            nn.Linear(self.input_size, self.bottleneck_size),
+            nn.Linear(input_size, bottleneck_size),
             nn.ReLU(),
         )
         self.decoder = nn.Sequential(
-            nn.Linear(self.bottleneck_size, self.output_size),  
+            nn.Linear(bottleneck_size, output_size),  
             nn.ReLU(),  
         )
     
